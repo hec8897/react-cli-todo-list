@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View, Button} from 'react-native';
 import TodoInsert from './component/TodoInsert';
 import TodoList from './component/TodoList';
 
@@ -25,6 +25,10 @@ const App = () => {
   const onRemove = (id) => (e) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
+  
+  const AllRemove = () => {
+    setTodos([])
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,6 +36,9 @@ const App = () => {
       <View style={styles.card}>
         <TodoInsert onAddTodo={addTodo} />
         <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
+      <View style={styles.DeleteBtn}>
+        <Button title={'delete'} style={styles.btnColor} onPress={AllRemove}/>
+      </View>
       </View>
     </SafeAreaView>
   );
@@ -65,6 +72,11 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 20,
   },
+  DeleteBtn:{
+    width: '100%',
+    marginBottom: 20,
+    alignItems: 'center',
+  }
 });
 
 export default App;
